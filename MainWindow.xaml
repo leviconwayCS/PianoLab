@@ -6,58 +6,164 @@
         xmlns:local="clr-namespace:PianoLab"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Window.Resources>
 
-        <Button Grid.Column="0"
-                Content="C4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
+        <!-- White key appearance: subtle gradient + rounded bottom corners -->
+        <Style x:Key="WhiteKeyStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FF1A1A1A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0,0,4,4"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFF3F3F3" Offset="0.85"/>
+                        <GradientStop Color="#FFE3E3E3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFDCEBFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-        <Button Grid.Column="1"
-                Content="D4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
+        <!-- Black key appearance: subtle gradient + rounded bottom corners -->
+        <Style x:Key="BlackKeyStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0,0,3,3"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FF3A3A3A" Offset="0"/>
+                        <GradientStop Color="#FF0A0A0A" Offset="0.8"/>
+                        <GradientStop Color="#FF000000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF444444"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-        <Button Grid.Column="2"
-                Content="E4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
+    </Window.Resources>
 
-        <Button Grid.Column="3"
-                Content="F4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Background="#FF2B2B2B">
+        <Canvas x:Name="PianoCanvas" Width="1248" Height="150" Background="#FF2B2B2B">
 
-        <Button Grid.Column="4"
-                Content="G4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
+            <!-- ===================== WHITE KEYS (88-key piano, A0 to C8) ===================== -->
+            <!-- Octave 0 -->
+            <Border x:Name="Key_A0" Tag="21" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="0" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B0" Tag="23" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="24" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 1 -->
+            <Border x:Name="Key_C1" Tag="24" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="48" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D1" Tag="26" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="72" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E1" Tag="28" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="96" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F1" Tag="29" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="120" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G1" Tag="31" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="144" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A1" Tag="33" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="168" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B1" Tag="35" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="192" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 2 -->
+            <Border x:Name="Key_C2" Tag="36" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="216" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D2" Tag="38" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="240" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E2" Tag="40" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="264" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F2" Tag="41" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="288" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G2" Tag="43" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="312" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A2" Tag="45" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="336" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B2" Tag="47" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="360" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 3 -->
+            <Border x:Name="Key_C3" Tag="48" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="384" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D3" Tag="50" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="408" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E3" Tag="52" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="432" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F3" Tag="53" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="456" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G3" Tag="55" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="480" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A3" Tag="57" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="504" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B3" Tag="59" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="528" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 4 -->
+            <Border x:Name="Key_C4" Tag="60" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="552" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D4" Tag="62" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="576" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E4" Tag="64" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="600" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F4" Tag="65" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="624" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G4" Tag="67" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="648" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A4" Tag="69" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="672" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B4" Tag="71" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="696" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 5 -->
+            <Border x:Name="Key_C5" Tag="72" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="720" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D5" Tag="74" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="744" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E5" Tag="76" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="768" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F5" Tag="77" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="792" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G5" Tag="79" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="816" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A5" Tag="81" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="840" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B5" Tag="83" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="864" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 6 -->
+            <Border x:Name="Key_C6" Tag="84" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="888" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D6" Tag="86" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="912" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E6" Tag="88" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="936" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F6" Tag="89" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="960" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G6" Tag="91" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="984" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A6" Tag="93" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1008" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B6" Tag="95" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1032" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 7 -->
+            <Border x:Name="Key_C7" Tag="96" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1056" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_D7" Tag="98" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1080" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_E7" Tag="100" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1104" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_F7" Tag="101" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1128" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_G7" Tag="103" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1152" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_A7" Tag="105" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1176" Canvas.Top="0" Panel.ZIndex="0"/>
+            <Border x:Name="Key_B7" Tag="107" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1200" Canvas.Top="0" Panel.ZIndex="0"/>
+            <!-- Octave 8 -->
+            <Border x:Name="Key_C8" Tag="108" Style="{StaticResource WhiteKeyStyle}" Width="24" Height="150" Canvas.Left="1224" Canvas.Top="0" Panel.ZIndex="0"/>
 
-        <Button Grid.Column="5"
-                Content="A4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
+            <!-- ===================== BLACK KEYS (drawn on top, higher Z-index) ===================== -->
+            <!-- Octave 0 -->
+            <Border x:Name="Key_As0" Tag="22" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="17.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 1 -->
+            <Border x:Name="Key_Cs1" Tag="25" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="65.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds1" Tag="27" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="89.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs1" Tag="30" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="137.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs1" Tag="32" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="161.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As1" Tag="34" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="185.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 2 -->
+            <Border x:Name="Key_Cs2" Tag="37" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="233.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds2" Tag="39" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="257.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs2" Tag="42" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="305.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs2" Tag="44" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="329.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As2" Tag="46" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="353.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 3 -->
+            <Border x:Name="Key_Cs3" Tag="49" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="401.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds3" Tag="51" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="425.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs3" Tag="54" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="473.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs3" Tag="56" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="497.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As3" Tag="58" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="521.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 4 -->
+            <Border x:Name="Key_Cs4" Tag="61" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="569.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds4" Tag="63" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="593.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs4" Tag="66" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="641.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs4" Tag="68" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="665.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As4" Tag="70" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="689.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 5 -->
+            <Border x:Name="Key_Cs5" Tag="73" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="737.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds5" Tag="75" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="761.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs5" Tag="78" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="809.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs5" Tag="80" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="833.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As5" Tag="82" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="857.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 6 -->
+            <Border x:Name="Key_Cs6" Tag="85" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="905.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds6" Tag="87" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="929.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs6" Tag="90" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="977.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs6" Tag="92" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1001.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As6" Tag="94" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1025.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <!-- Octave 7 -->
+            <Border x:Name="Key_Cs7" Tag="97" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1073.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Ds7" Tag="99" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1097.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Fs7" Tag="102" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1145.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_Gs7" Tag="104" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1169.0" Canvas.Top="0" Panel.ZIndex="1"/>
+            <Border x:Name="Key_As7" Tag="106" Style="{StaticResource BlackKeyStyle}" Width="14" Height="95" Canvas.Left="1193.0" Canvas.Top="0" Panel.ZIndex="1"/>
 
-        <Button Grid.Column="6"
-                Content="B4"
-                Width="100"
-                Height="40"
-                Click="PianoKey_Click"/>
-
-    </Grid>
+        </Canvas>
+    </ScrollViewer>
 </Window>

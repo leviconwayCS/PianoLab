@@ -18,3 +18,4 @@ C:\Users\kiki_\PianoLab\obj\Debug\net9.0-windows\refint\PianoLab.dll
 C:\Users\kiki_\PianoLab\obj\Debug\net9.0-windows\PianoLab.pdb
 C:\Users\kiki_\PianoLab\obj\Debug\net9.0-windows\PianoLab.genruntimeconfig.cache
 C:\Users\kiki_\PianoLab\obj\Debug\net9.0-windows\ref\PianoLab.dll
+C:\Users\kiki_\PianoLab\obj\Debug\net9.0-windows\PianoLab.sourcelink.json
